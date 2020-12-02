@@ -8,9 +8,26 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.routine</groupId>
+            <artifactId>rt-tool</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 连接池...-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+    </dependencies>
     <groupId>com.routine</groupId>
     <artifactId>rt-config</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
 
 </project>

@@ -1,0 +1,23 @@
+runtine:
+  datasource:
+    mysql:
+      driverClassName: com.mysql.jdbc.Driver
+      userName: root
+      password: 123456
+      url: jdbc:mysql://127.0.0.1:3306/community2.0?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    pool:
+      initialSize: 10
+      maxActive: 80
+      maxIdle: 60
+      minIdle: 10
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 3000
+      minEvictableIdleTimeMillis: 300000
+      maxPoolPreparedStatementPerConnectionSize: 10
+      filters: stat
+      defaultReadOnly: false
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      validationQuery: select 1
+      timeBetweenLogStatsMillis: 6000

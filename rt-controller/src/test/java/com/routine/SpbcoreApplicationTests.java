@@ -1,4 +1,4 @@
-package com.routine.spbcore;
+package com.routine;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

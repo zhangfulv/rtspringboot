@@ -10,7 +10,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.routine</groupId>
-    <artifactId>service</artifactId>
+    <artifactId>rt-service</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.routine</groupId>
+            <artifactId>rt-mapper</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
