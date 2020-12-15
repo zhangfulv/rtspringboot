@@ -3,6 +3,8 @@ package com.routine.tool;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.routine.tool.jdbcConvert.*;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -10,15 +12,23 @@ import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class JdbcUtil {
-
+	public static Map<Class,IClsConvert> convertMap = new HashMap<Class,IClsConvert>(){
+		{
+			put(Boolean.class,new BooleanIClsConvert());
+			put(Double.class,new DoubleIClsConvert());
+			put(java.sql.Date.class,new DateIClsConvert());
+			put(Float.class,new FloatIClsConvert());
+			put(Integer.class,new IntegerIClsConvert());
+			put(Timestamp.class,new TimestampClsConvert());
+			put(String.class,new StringClsConvert());
+		}
+	};
 
 	public static String toString(ResultSet resultSet) throws SQLException {
 		StringBuilder buf = new StringBuilder();
@@ -74,35 +84,20 @@ public class JdbcUtil {
 				Field[] fields = obj.getClass().getDeclaredFields();
 				for(Field f : fields) {  
 					if(!f.getName().startsWith("serialVersion")){
-						
 						try{
 					     PropertyDescriptor pd = new PropertyDescriptor(f.getName(), record);
-							//获得写方法
+						 //获得写方法
 					     Method wM = pd.getWriteMethod();
 					     //获取列名
 					     String columnName = StringUtil.toUnderLineLowerStr(f.getName());
 					     Object columnValue = resultSet.getObject(columnName);
 					     if(columnValue != null&&!"".equals(columnValue)){
-					    	 if(f.getType().equals(Date.class) ){
-					    		 wM.invoke(obj, sdf.parse(columnValue.toString()));
-					    	 }else if (f.getType().equals(Integer.class)){
-								 wM.invoke(obj, (Integer)columnValue);
-							 }else if(f.getType().equals(Float.class)){
-								 wM.invoke(obj, Float.parseFloat(columnValue.toString()));
-							 }else if(f.getType().equals(Boolean.class)){
-								 wM.invoke(obj, Boolean.parseBoolean(columnValue.toString()));
-							 }else if (f.getType().equals(Double.class)){
-								 if(columnValue == null || "null".equals(columnValue.toString())){
-									 wM.invoke(obj,0.0);
-								 }else{
-									 System.out.println(columnValue.toString());
-									 wM.invoke(obj, StringUtil.isEmpty(columnValue.toString()) ? 0.0 : Double.parseDouble(columnValue.toString()));
-								 }
-							 }else if (f.getType().equals(Long.class)){
-								 wM.invoke(obj, Long.parseLong(columnValue.toString()));
-							 }else {
-					    		 wM.invoke(obj, columnValue);
-					    	 }
+							 IClsConvert iClsConvert = convertMap.get(f.getType());
+							 if(iClsConvert != null) {
+								 iClsConvert.invokeSetConvert(wM, obj, columnValue);
+							 }else{
+								 wM.invoke(obj, columnValue);
+							 }
 					     }
 						}catch(Exception e){
 							e.printStackTrace();
