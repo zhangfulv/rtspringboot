@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  *  标签备注表名、字段名
- * @author zf
+ * @author zf  
  */
 @Documented
 @Target({ElementType.TYPE,ElementType.FIELD})
