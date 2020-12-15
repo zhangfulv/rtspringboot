@@ -1,8 +1,8 @@
 package com.routine.controller;
 
 
+import com.routine.aop.ResponseAOPAnnotation;
 import com.routine.rtservice.AccessService;
-import com.routine.config.aop.ResponseAOPAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

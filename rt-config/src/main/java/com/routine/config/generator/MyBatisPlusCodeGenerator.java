@@ -144,7 +144,7 @@ public class MyBatisPlusCodeGenerator {
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("id");
-        strategy.setInclude("t_xtcode");
+        strategy.setInclude("t_user");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

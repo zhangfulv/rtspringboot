@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/rt-dao/dao.iml" filepath="$PROJECT_DIR$/rt-dao/dao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rt-mapper/mapper.iml" filepath="$PROJECT_DIR$/rt-mapper/mapper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rt-pojo/pojo.iml" filepath="$PROJECT_DIR$/rt-pojo/pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/rt-config/rt-config.iml" filepath="$PROJECT_DIR$/rt-config/rt-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/rt-controller/rt-controller.iml" filepath="$PROJECT_DIR$/rt-controller/rt-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rt-dao/rt-dao.iml" filepath="$PROJECT_DIR$/rt-dao/rt-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rt-mapper/rt-mapper.iml" filepath="$PROJECT_DIR$/rt-mapper/rt-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rt-pojo/rt-pojo.iml" filepath="$PROJECT_DIR$/rt-pojo/rt-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rt-service/rt-service.iml" filepath="$PROJECT_DIR$/rt-service/rt-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rt-tool/rt-tool.iml" filepath="$PROJECT_DIR$/rt-tool/rt-tool.iml" />
       <module fileurl="file://$PROJECT_DIR$/rtspringboot.iml" filepath="$PROJECT_DIR$/rtspringboot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rt-service/service.iml" filepath="$PROJECT_DIR$/rt-service/service.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.routine.rtpojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,6 +24,7 @@ public class TXtcode implements Serializable {
     /**
      * 唯一标识
      */
+    @TableId
     private String codeId;
 
     /**

@@ -1,6 +1,11 @@
 package com.routine.config.database;
 
+import com.baomidou.mybatisplus.extension.plugins.IllegalSQLInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -16,14 +21,15 @@ import javax.sql.DataSource;
 
 /**
  * @ClassName MybatisConfig
- * @DESCRIPTION TODO
+ * @DESCRIPTION
  * @Author zf
  * @Date 2019/1/15 14:16
  */
 @Configuration
 @MapperScan(basePackages = "com.routine.rtmapper*",sqlSessionTemplateRef = "dbSqlSessionTemplate")
 public class MybatisConfig {
-    /* @Description  设置连接池到数据会话工厂里面，设置xml文件资源信息路径
+    /**
+     *  @Description  设置连接池到数据会话工厂里面，设置xml文件资源信息路径
      * @param dataSource
      * @return org.apache.ibatis.session.SqlSessionFactory
      * @Author zf
@@ -38,12 +44,20 @@ public class MybatisConfig {
         ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = resourcePatternResolver.getResources("classpath*:**/rtmapper/xml/*.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
-
-
+        /**
+        * desc:  分页插件
+         *  sql打印 有改变，由插件改为p6spy
+        */
+        sqlSessionFactoryBean.setPlugins(
+                new Interceptor[]{
+                        new PaginationInterceptor()
+                }
+        );
         return sqlSessionFactoryBean.getObject();
     }
 
-    /* @Description   连接池对应数据资源事物
+    /**
+     *  @Description   连接池对应数据资源事物
      * @param dataSource
      * @return org.springframework.jdbc.datasource.DataSourceTransactionManager
      * @Author zf
@@ -55,7 +69,8 @@ public class MybatisConfig {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    /* @Description  建立sql会话模板
+    /**
+     *  @Description  建立sql会话模板
      * @param sqlSessionFactory
      * @return org.mybatis.spring.SqlSessionTemplate
      * @Author zf

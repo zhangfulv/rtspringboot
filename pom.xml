@@ -16,7 +16,6 @@
         <fastjson.version>1.2.75</fastjson.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -50,7 +49,6 @@
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
             <version>3.9.1</version>
-            <scope>test</scope>
         </dependency>
         <!-- mybatis plus 代码生成依赖包-->
         <dependency>
@@ -63,6 +61,12 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
             <version>2.2</version>
+        </dependency>
+        <!-- 日志框架 elk 依赖-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
         </dependency>
     </dependencies>
     <modules>

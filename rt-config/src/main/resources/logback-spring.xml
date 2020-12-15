@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+    <!-- 获取applicaiton.yml中的log地址 -->
+    <springProperty scope="context" name="LOG_HOME" source="logging.file.path"/>
+    <springProperty scope="context" name="LOG_NAME" source="logging.file.name"/>
+    <!-- Errors were reported during translation. -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c]-[%p] %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 文件日志策略：每天生成一个日志文件，保存30天的日志文件-->
+    <appender name="debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${LOG_NAME}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} | %msg%n</pattern>　
+        </encoder>
+    </appender>
+    <!-- level : TRACE < DEBUG < INFO < WARN < ERROR -->
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="debug"/>
+    </root>
+
+</configuration>

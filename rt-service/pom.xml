@@ -19,6 +19,17 @@
             <artifactId>rt-mapper</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.routine</groupId>
+            <artifactId>rt-tool</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- jwt 加密-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.4.0</version>
+        </dependency>
     </dependencies>
 
 

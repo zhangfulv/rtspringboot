@@ -1,7 +1,7 @@
 package com.routine.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.routine.config.aop.ResponseAOPAnnotation;
+import com.routine.aop.ResponseAOPAnnotation;
 import com.routine.config.database.MySQLProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +28,7 @@ public class BaseController {
     }
 
     @PostMapping("datasource.json")
-    public Object datasource(){
+    public Object datasource( ){
         return mySQLProperties;
     }
 }

@@ -11,6 +11,11 @@
         <module name="pojo" />
         <module name="rt-config" />
         <module name="rt-controller" />
+        <module name="rt-dao" />
+        <module name="rt-mapper" />
+        <module name="rt-pojo" />
+        <module name="rt-service" />
+        <module name="rt-tool" />
         <module name="service" />
         <module name="spbcore" />
       </profile>
@@ -21,6 +26,11 @@
       <module name="pojo" target="1.8" />
       <module name="rt-config" target="1.8" />
       <module name="rt-controller" target="1.8" />
+      <module name="rt-dao" target="1.8" />
+      <module name="rt-mapper" target="1.8" />
+      <module name="rt-pojo" target="1.8" />
+      <module name="rt-service" target="1.8" />
+      <module name="rt-tool" target="1.8" />
       <module name="rtspringboot" target="1.8" />
       <module name="service" target="1.8" />
       <module name="spbcore" target="1.8" />
