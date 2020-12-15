@@ -76,8 +76,9 @@ public class JdbcUtil {
 					if(!f.getName().startsWith("serialVersion")){
 						
 						try{
-					     PropertyDescriptor pd = new PropertyDescriptor(f.getName(), record);  
-					     Method wM = pd.getWriteMethod();//获得写方法  
+					     PropertyDescriptor pd = new PropertyDescriptor(f.getName(), record);
+							//获得写方法
+					     Method wM = pd.getWriteMethod();
 					     //获取列名
 					     String columnName = StringUtil.toUnderLineLowerStr(f.getName());
 					     Object columnValue = resultSet.getObject(columnName);
