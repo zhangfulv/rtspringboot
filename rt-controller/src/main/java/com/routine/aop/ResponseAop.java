@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class ResponseAOP {
+public class ResponseAop {
 
 
     @Pointcut("execution(public * com.routine.controller.*.*(..)) || @within(com.routine.aop.ResponseAOPAnnotation)")
@@ -53,6 +53,7 @@ public class ResponseAOP {
             resultObject =JsonResponse.Failed(e.code,e.message,beginTime);
         }catch (Exception e){
             resultObject = JsonResponse.Failed(9999,e.getMessage(),beginTime);
+            e.printStackTrace();
         }finally {
 
         }

@@ -1,6 +1,10 @@
 package com.routine.interceptor;
 
+import com.alicp.jetcache.Cache;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.CreateCache;
 import com.routine.rtservice.TokenService;
+import com.routine.tool.CryptoUtil;
 import com.routine.tool.JsonResponse;
 import com.routine.tool.StringUtil;
 import com.routine.tool.exception.TokenInvalidException;
@@ -23,12 +27,13 @@ import java.lang.reflect.Method;
 public class JwtInterceptor implements HandlerInterceptor {
     @Autowired
     private TokenService tokenService;
-    @Autowired
-    private RedisUtil redisUtil;
+
+    @CreateCache(name = "tokenCache")
+    private Cache<String,String> tokenCache;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String token = request.getHeader("token");
+        String aesToken = request.getHeader("token");
         // 如果不是映射到方法直接通过
         if(!(handler instanceof HandlerMethod)){
             return true;
@@ -37,15 +42,15 @@ public class JwtInterceptor implements HandlerInterceptor {
         HandlerMethod handlerMethod=(HandlerMethod)handler;
         Method method=handlerMethod.getMethod();
         //检查是否有passtoken注释，有则跳过认证
-        if (method.isAnnotationPresent(PassToken.class)) {
-            return true;
-        }
+        if (method.isAnnotationPresent(PassToken.class)) { return true; }
         try {
-            if(!redisUtil.hasKey(token) || StringUtil.isEmpty(redisUtil.get(token))){
-                    throw  new TokenInvalidException("过期,请重新登录。");
-            }
-            if(tokenService.verifier(token)){
+            //校验token是否过期 && 校验token认证成功
+            String s = tokenCache.get(aesToken);
+            if(tokenCache.get(aesToken)!= null && tokenService.verifierAesToken(aesToken)){
                 return true;
+            }
+            else{
+               throw new TokenInvalidException();
             }
         } catch (TokenInvalidException e){
             String failed = JsonResponse.Failed(e.code, e.message, System.currentTimeMillis());

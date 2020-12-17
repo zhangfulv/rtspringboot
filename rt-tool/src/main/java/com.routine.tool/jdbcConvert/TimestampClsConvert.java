@@ -1,6 +1,7 @@
 package com.routine.tool.jdbcConvert;
 
-import com.lh.wspprovider.util.DateUtil;
+
+import com.routine.tool.DateUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +17,7 @@ public class TimestampClsConvert extends BaseIClsConvert implements IClsConvert 
     public void invokeSetConvert(Method method,Object Instance, Object objValue) throws InvocationTargetException,IllegalAccessException{
         super.invokeSetConvert(method,Instance,objValue);
         try {
-            method.invoke(Instance, DateUtil.format(objValue,DateUtil.DATE_PATTERN.YYYY_MM_DD_HH_MM_SS));
+            method.invoke(Instance, DateUtil.format(objValue, DateUtil.DATE_PATTERN.YYYY_MM_DD_HH_MM_SS));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

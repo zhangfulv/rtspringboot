@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 public class TXtcode implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     /**
      * 唯一标识
      */

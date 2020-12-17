@@ -3,7 +3,6 @@ package com.routine.tool;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.routine.tool.jdbcConvert.*;
 
 import java.beans.PropertyDescriptor;

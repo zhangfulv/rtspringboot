@@ -1,5 +1,6 @@
 package com.routine.rtservice;
 
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -24,10 +25,10 @@ public class TXtcodeService extends ServiceImpl<TXtcodeMapper, TXtcode>  {
     @Autowired
     TXtcodeMapper tXtcodeMapper;
     @Override
+    @Cached
     public List<TXtcode> list(){
         return this.list(null);
     }
-
 
     public IPage<TXtcode> listPager(Integer page ,Integer size){
         QueryWrapper qw = new QueryWrapper();
@@ -36,6 +37,7 @@ public class TXtcodeService extends ServiceImpl<TXtcodeMapper, TXtcode>  {
         iPage.setSize(size);
         iPage.setCurrent(page);
         IPage iPage1 = tXtcodeMapper.selectPage(iPage, qw);
+
         return iPage1;
     }
 }

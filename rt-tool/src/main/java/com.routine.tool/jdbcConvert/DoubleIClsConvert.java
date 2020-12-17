@@ -1,6 +1,7 @@
 package com.routine.tool.jdbcConvert;
 
-import com.lh.wspprovider.util.StringUtil;
+
+import com.routine.tool.StringUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

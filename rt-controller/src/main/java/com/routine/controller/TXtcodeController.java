@@ -2,6 +2,7 @@ package com.routine.controller;
 
 
 import com.routine.aop.ResponseAOPAnnotation;
+import com.routine.interceptor.PassToken;
 import com.routine.rtservice.TXtcodeService;
 import com.routine.tool.exception.IllegalArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
